@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+ 
+<div th:fragment="loggedInHeader">
+    <header>
+        <ul class="header_nav">
+            <li>
+            <a href="/photos">
+                トップ
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/users/detail/{id} (id=${user.id})}">
+                自分のプロフィール
+            </a>
+        </li>
+        <li>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit">ログアウト</button>
+            </form>
+        </li>
+        </ul>
+    </header>
+</div>
+ 
+<div th:fragment="notLoggedInHeader">
+    <header>
+        <ul class="header_nav">
+            <li>
+            <a href="/users/sign_up">
+                サインアップ
+            </a>
+        </li>
+        <li>
+            <a href="/users/login">
+                ログイン
+            </a>
+        </li>
+        </ul>
+    </header>
+</div>
+ 
+</html>
