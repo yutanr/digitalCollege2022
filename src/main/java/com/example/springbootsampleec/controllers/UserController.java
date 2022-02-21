@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
-// 追記
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,7 +17,6 @@ import org.springframework.validation.BindingResult;
 import com.example.springbootsampleec.services.UserService;
 import com.example.springbootsampleec.forms.SignUpForm;
  
-// 追記
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import com.example.springbootsampleec.entities.User;
@@ -38,7 +36,6 @@ public class UserController {
         @ModelAttribute("signUpForm") SignUpForm signUpForm,
         Model model
         ) {
-        // model.addAttribute("signUpForm", signUpForm);
         model.addAttribute("title", "サインアップ");
         model.addAttribute("main", "users/sign_up::main");
         return "layout/not_logged_in";    

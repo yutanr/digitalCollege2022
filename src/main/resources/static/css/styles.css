@@ -7,6 +7,79 @@
     margin-right: 30px;
 }
 
-.photo {
-    width: 200px;
+#logout {
+	display:none;
+}
+
+.item_table {
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+.item_table th, .item_table td {
+	border: solid 1px black;
+	padding: 5px;
+}
+
+.item_image {
+	height: 150px;
+}
+
+.navbar-light .navbar-brand.logo {
+	color: #283c63;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.main_title {
+	color: #283c63;
+}
+
+.contents {
+	padding-top: 30px;
+}
+.search {
+	margin: 20px 0;
+}
+
+.search .btn.btn-outline-secondary {
+	background-color: #f1eaf5;
+}
+.category {
+	padding: 10px;
+}
+
+.nav_title {
+	font-size: 16px;
+	color: #283c63;
+	background-color: #f0b400;
+	padding: 10px 0;
+}
+
+.category_menu a {
+	display: block;
+}
+
+
+.item.card {
+	margin-bottom: 20px;
+	padding: 10px;
+	border: solid 5px #f0b400;
+
+}
+
+.item_row {
+	align-items: center;
+}
+.item_figure {
+	/* padding: 10px; */
+}
+.item_description {
+
+}
+.item_title {
+	font-size: 20px;
+}
+.item_title a {
+	color: #f85f73;
 }

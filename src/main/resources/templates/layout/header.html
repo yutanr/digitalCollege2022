@@ -3,23 +3,30 @@
  
 <div th:fragment="loggedInHeader">
     <header>
-        <ul class="header_nav">
-            <li>
-            <a href="/photos">
-                トップ
-            </a>
-        </li>
-        <li>
-            <a th:href="@{/users/detail/{id} (id=${user.id})}">
-                自分のプロフィール
-            </a>
-        </li>
-        <li>
-            <form th:action="@{/logout}" method="post">
-                <button type="submit">ログアウト</button>
-            </form>
-        </li>
-        </ul>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <a class="navbar-brand logo" href="./items">トップ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#header_nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="header_nav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/users/detail/{id} (id=${user.id})}">自分のプロフィール</a>
+                    </li>
+                    <th:block th:if="${user.email == 'admin@admin.com'}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">管理ページ</a>
+                        </li>
+                    </th:block>
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" method="post">
+                            <label class="nav-link" for="logout">ログアウト</label>
+                            <input id="logout" type="submit" value="ログアウト">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </header>
 </div>
  

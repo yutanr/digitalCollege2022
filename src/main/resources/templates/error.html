@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
-    <title th:text="${title} ?: _"></title>
+    <title>エラー</title>
 </head>
 <body>
-    <div id="header" th:replace="~{layout/header :: loggedInHeader}"></div>
-    <main>
-        <div id="main" th:include="__${main}__"></div>
-    </main>
+    <h1>エラー</h1>
+    <p>エラーです。</p>
+    <a href="/items">トップ</a>
 </body>
