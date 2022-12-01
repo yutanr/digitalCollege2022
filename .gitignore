@@ -38,3 +38,6 @@ out/
 
 ### .propertiesを無視 ###
 *.properties
+
+### .DS_Store ###
+*.DS_Store
