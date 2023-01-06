@@ -3,7 +3,9 @@ package com.example.springbootsampleec.forms;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
- 
+
+import java.util.List;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,5 +29,7 @@ public class ItemCreateForm {
     private String description;
     
     @NotNull
-    private  MultipartFile image;
+    private  List<MultipartFile> image;
+    
+    
 }

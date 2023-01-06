@@ -24,6 +24,10 @@
 .item_image {
 	height: 150px;
 }
+.admin_item {
+	height: 150px;
+}
+
 
 .navbar-light .navbar-brand.logo {
 	color: #283c63;
@@ -62,10 +66,19 @@
 
 
 .item.card {
+	
 	margin-bottom: 20px;
 	padding: 10px;
 	border: solid 5px #f0b400;
 
+}
+
+.img-fluid{
+	height: 100px;
+	max-width: none;
+}
+.col-9{
+	display: flex;
 }
 
 .item_row {
@@ -83,3 +96,9 @@
 .item_title a {
 	color: #f85f73;
 }
+
+.carousel {
+            width: 50%;
+            height: 50%;
+            margin: 0 50px 0 100px;
+        }

@@ -5,7 +5,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
- 
 // パスワード暗号化のためのクラスをインポート
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
             .authorizeRequests()
-                .mvcMatchers("/users/login", "/users/sign_up").permitAll() // login画面と sign_up 画面については認証無しでアクセスできる
+                .mvcMatchers("/top","/users/login", "/users/sign_up").permitAll() // login画面と sign_up 画面については認証無しでアクセスできる
                 .anyRequest().authenticated()
             .and()
                 .formLogin()

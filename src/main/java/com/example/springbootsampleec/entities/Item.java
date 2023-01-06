@@ -38,6 +38,8 @@ public class Item {
     @Column(name = "image", length = 100, nullable = false)
     private String image;  // 画像
     
+    
+   
     // 作成日時
     @Column(name="createdAt",nullable = false, updatable = false, insertable = false, 
     columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

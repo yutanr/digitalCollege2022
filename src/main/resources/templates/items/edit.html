@@ -28,6 +28,7 @@
     </form>
     <h2>現在の画像</h2>
     <p><img class="item" th:src="@{/images/{image} (image=${item.image})}"></p>
+    <p><img class="item" th:src="@{/images/{image2} (image=${item.image})}"></p>
     <p><a th:href="@{/items/detail/{id} (id=${item.id})}">戻る</a></p>
 </div>
 </html>

@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main">
-    <h1>[[ ${title} ]]</h1>
+    <h1>[[ ${item.name} ]]</h1>
     <dl>
+		<dd>[[ ${item.description} ]]</dd>
+        
         <dt>商品名</dt>
         <dd>[[ ${item.name} ]]</dd>
         <dt>価格</dt>
         <dd>[[ ${item.price} ]]円</dd>
         <dt>商品説明</dt>
-        <dd>[[ ${item.description} ]]</dd>
-        <dt>商品画像</dt>
+        <div class="center_contents">
+			<dt>商品画像</dt>
+            <div class="carousel">
         <dd><img class="item" th:src="@{/images/{image} (image=${item.image})}"></dd>
+        <dd><img class="item" th:src="@{/images/{image} (image=${item.image})}"></dd>
+        </div></div>
     </dl>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" 
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" 
+            crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" 
+            integrity="sha256-DHF4zGyjT7GOMPBwpeehwoey18z8uiz98G4PRu2lV0A=" 
+            crossorigin="anonymous"></script>
+            <script type="text/javascript">
+                // カルーセルにするセレクタを指定する
+                $('.carousel').slick({
+                // ここに slick のオプションを指定
+                    dots: true,
+                    autoplay: true,
+                    autoplaySpeed: 1000,
+                });
+            </script>
 </div>
 </html>

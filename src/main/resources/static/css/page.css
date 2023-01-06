@@ -1,0 +1,70 @@
+/*フォントサイズ*/
+.pro_name {
+    font-size: 32px;
+}
+
+.pro_info {
+    font-size: 8px;
+}
+
+.title_mid {
+    font-size: 24px;
+}
+
+.title_small {
+    font-size: 20px;
+}
+
+.pro_num {
+    font-size: 12px;
+}
+
+.material {
+    font-size: 12px;
+}
+.price {
+    font-size: 24px;
+}
+
+/*ボックス・ボックス間サイズ*/
+select {
+    height:30px;
+    width:120px;
+    font-size: 18px;
+}
+.submit {
+    margin: 20px 0;
+}
+.decide {
+    height: 40px;
+    width: 160px;
+    background-color: red;
+    color:white;
+}
+.my_fav {
+    height: 40px;
+    width: 40px;
+}
+
+
+
+/*画面中央　横並び*/
+.center_contents {
+    display:flex;
+}
+
+.color {
+    display: flex;
+}
+.size {
+    display:flex;
+}
+
+/*カルーセル調整*/
+.carousel {
+    height:100%;
+}
+.carousel img {
+    /*position: absolute;*/
+    width: 100%
+}
