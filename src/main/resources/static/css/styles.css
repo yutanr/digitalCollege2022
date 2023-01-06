@@ -83,3 +83,12 @@
 .item_title a {
 	color: #f85f73;
 }
+
+.footer-nav a{
+	text-decoration: none;
+	color:black;
+}
+
+.address{
+	display:flex;
+}
