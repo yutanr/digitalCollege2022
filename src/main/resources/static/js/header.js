@@ -1,8 +1,17 @@
-$(function(){
-  $(".has-sub").mouseover(function(){
-    $(this).children(".sub").stop().slideDown();
+$(function() {
+ 
+  // ①マウスをボタンに乗せた際のイベントを設定
+  $('#menu li').hover(function() {
+ 
+    // ②乗せたボタンに連動したメガメニューをスライドで表示させる
+    $(this).find('.menu_contents').stop().slideDown();
+ 
+  // ③マウスをボタンから離した際のイベントを設定
+  }, function() {
+ 
+    // ④マウスを離したらメガメニューをスライドで非表示にする
+    $(this).find('.menu_contents').stop().slideUp();
+ 
   });
-  $(".has-sub").mouseout(function(){
-    $(".sub").stop().slideUp();
-  });
+ 
 });
