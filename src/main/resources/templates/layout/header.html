@@ -1,10 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+ 
 <div th:fragment="loggedInHeader">
     <header>
+    
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <a class="navbar-brand logo" href="/items/">トップ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#header_nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="header_nav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/users/detail/{id} (id=${user.id})}">自分のプロフィール</a>
+                    </li>
+                    <th:block th:if="${user.email == 'admin@admin.com'}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin">管理ページ</a>
+                        </li>
+                    </th:block>
+                    <li class="nav-item">
+                        <form th:action="@{/logout}" method="post">
+                            <label class="nav-link" for="logout">ログアウト</label>
+                            <input id="logout" type="submit" value="ログアウト">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <ul class="header_cart">
-            <li class="padding"><a href="#">お気に入り</a>|</li>
-            <li><a href="#">カート</a></li>
+            <li class="padding">お気に入り|</li>
+            <li>カート</li>
         </ul>
         <form class="form_position">
             <input type="text" class="text"><button>検索</button>
@@ -14,18 +40,20 @@
 		  <!-- メニューボタン
 		   ここにマウスを乗せると下のコンテンツが表示される -->
 		  <li class="menu_list">
-		    <a href="#">TOP</a>
+		    <a href="/items/">TOP</a>
 		 
 		    <!-- メガメニュー
 		     一旦非表示にし、マウスを乗せたボタンに連動したコンテンツのみ表示 -->
-		    
+		    <div class="menu_contents flex">
+		      
+		    </div>
 		  </li>
 		 
 		  <li class="menu_list">
-		    <a href="#">WOMEN</a>
+		  	<a href="#">WOMEN</a>
 		    <div class="menu_contents flex">
 		      <ul>
-		        <li><a href="#">WOMEN TOP</a></li>
+		      	<li><a href="#">WOMEN TOP</a></li>
 		        <li><a href="#">アウター</a></li>
 		        <li><a href="#">トップス</a></li>
 		        <li><a href="#">パンツ</a></li>
@@ -35,7 +63,12 @@
 		        <li><a href="#">グッズ</a></li>
 		      </ul>
 		      <ul>
-		        <li><a href="#">ログアウト</a></li>
+		        <li　class="nav-item">
+			        <form th:action="@{/logout}" method="post">
+		                <label for="logout">ログアウト</label>
+		                <input id="logout" type="submit" value="ログアウト">
+	                </form>
+                </li>
 		        <li><a href="#">店舗検索</a></li>
 		        <li><a href="#">新作商品</a></li>
 		        <li><a href="#">期間限定価格</a></li>
@@ -50,7 +83,7 @@
 		    <a href="#">MEN</a>
 		    <div class="menu_contents flex">
 		      <ul>
-		        <li><a href="#">MEN TOP</a></li>
+		      	<li><a href="#">MEN TOP</a></li>
 		        <li><a href="#">アウター</a></li>
 		        <li><a href="#">トップス</a></li>
 		        <li><a href="#">パンツ</a></li>
@@ -69,11 +102,11 @@
 		    </div>
 		  </li>
 		  
-		    <li class="menu_list">
+		  <li class="menu_list">
 		    <a href="#">KIDS</a>
 		    <div class="menu_contents flex">
 		      <ul>
-		        <li><a href="#">WOMEN TOP</a></li>
+		      	<li><a href="#">KIDS TOP</a></li>
 		        <li><a href="#">アウター</a></li>
 		        <li><a href="#">トップス</a></li>
 		        <li><a href="#">パンツ</a></li>
@@ -95,9 +128,6 @@
 		  </li>
 		 
 		</ul>
-        
-        </div>
-
     </header>
 </div>
  
@@ -121,11 +151,13 @@
 		  <!-- メニューボタン
 		   ここにマウスを乗せると下のコンテンツが表示される -->
 		  <li class="menu_list">
-		    <a href="#">TOP</a>
+		    <a href="/items/">TOP</a>
 		 
 		    <!-- メガメニュー
 		     一旦非表示にし、マウスを乗せたボタンに連動したコンテンツのみ表示 -->
-		    
+		    <div class="menu_contents flex">
+		      
+		    </div>
 		  </li>
 		 
 		  <li class="menu_list">
@@ -142,7 +174,7 @@
 		        <li><a href="#">グッズ</a></li>
 		      </ul>
 		      <ul>
-		        <li><a href="#">ログアウト</a></li>
+		        <li><a href="/users/sign_up">新規会員登録</a>・<a href="#">ログイン</a></li>
 		        <li><a href="#">店舗検索</a></li>
 		        <li><a href="#">新作商品</a></li>
 		        <li><a href="#">期間限定価格</a></li>
@@ -157,7 +189,7 @@
 		    <a href="#">MEN</a>
 		    <div class="menu_contents flex">
 		      <ul>
-		        <li><a href="#">MEN TOP</a></li>
+		      	<li><a href="#">MEN TOP</a></li>
 		        <li><a href="#">アウター</a></li>
 		        <li><a href="#">トップス</a></li>
 		        <li><a href="#">パンツ</a></li>
@@ -165,7 +197,7 @@
 		        <li><a href="#">グッズ</a></li>
 		      </ul>
 		      <ul>
-		        <li><a href="#">ログアウト</a></li>
+		        <li><a href="/users/sign_up">新規会員登録</a>・<a href="#">ログイン</a></li>
 		        <li><a href="#">店舗検索</a></li>
 		        <li><a href="#">新作商品</a></li>
 		        <li><a href="#">期間限定価格</a></li>
@@ -176,11 +208,11 @@
 		    </div>
 		  </li>
 		  
-		    <li class="menu_list">
+		  <li class="menu_list">
 		    <a href="#">KIDS</a>
 		    <div class="menu_contents flex">
 		      <ul>
-		        <li><a href="#">WOMEN TOP</a></li>
+		      	<li><a href="#">KIDS TOP</a></li>
 		        <li><a href="#">アウター</a></li>
 		        <li><a href="#">トップス</a></li>
 		        <li><a href="#">パンツ</a></li>
@@ -190,7 +222,7 @@
 		        <li><a href="#">グッズ</a></li>
 		      </ul>
 		      <ul>
-		        <li><a href="#">ログアウト</a></li>
+		        <li><a href="/users/sign_up">新規会員登録</a>・<a href="#">ログイン</a></li>
 		        <li><a href="#">店舗検索</a></li>
 		        <li><a href="#">新作商品</a></li>
 		        <li><a href="#">期間限定価格</a></li>
@@ -202,7 +234,6 @@
 		  </li>
 		 
 		</ul>
-        
     </header>
 </div>
  
