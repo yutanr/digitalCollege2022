@@ -83,42 +83,4 @@ a {
 	justify-content: center;
 }
 
-/* ①メニューボタンのスタイル */
-.menu {
-  display: flex;
-  position: relative;
-}
-.menu .menu_list {
-  width: 33.33%;
-}
-.menu .menu_list > a {
-  border: 1px solid #ccc;
-  display: block;
-  padding: 10px;
-  text-align: center;
-  transition: .3s;
-}
-.menu .menu_list > a:hover {
-  color: #000;
-  background: #fff;
-}
- 
-/* ②メガメニューのスタイル */
-.menu_contents {
-  background: #fff;
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-}
-.menu_contents li {
-  width: 100%;
-}
-.menu_contents li a {
-  color: #000;
-}
 
-.flex {
-	display: flex;
-}
