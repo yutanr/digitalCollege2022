@@ -63,7 +63,7 @@
 		        <li><a href="#">グッズ</a></li>
 		      </ul>
 		      <ul>
-		        <li　class="nav-item">
+		        <li>
 			        <form th:action="@{/logout}" method="post">
 		                <label for="logout">ログアウト</label>
 		                <input id="logout" type="submit" value="ログアウト">
@@ -91,7 +91,12 @@
 		        <li><a href="#">グッズ</a></li>
 		      </ul>
 		      <ul>
-		        <li><a href="#">ログアウト</a></li>
+		        <li>
+		        	<form th:action="@{/logout}" method="post">
+		                <label for="logout">ログアウト</label>
+		                <input id="logout" type="submit" value="ログアウト">
+	                </form>
+		        </li>
 		        <li><a href="#">店舗検索</a></li>
 		        <li><a href="#">新作商品</a></li>
 		        <li><a href="#">期間限定価格</a></li>
@@ -116,7 +121,12 @@
 		        <li><a href="#">グッズ</a></li>
 		      </ul>
 		      <ul>
-		        <li><a href="#">ログアウト</a></li>
+		        <li>
+		        	<form th:action="@{/logout}" method="post">
+		                <label for="logout">ログアウト</label>
+		                <input id="logout" type="submit" value="ログアウト">
+	                </form>
+		        </li>
 		        <li><a href="#">店舗検索</a></li>
 		        <li><a href="#">新作商品</a></li>
 		        <li><a href="#">期間限定価格</a></li>
