@@ -34,64 +34,59 @@ a {
     text-align: center;
 }
 
-.nav {
-    list-style-type: none;
-    display: flex;
-    width: 310px;
-    gap: 0px 20px;
+
+.text {
+    width: 600px;
+    background-color: #f2f2f2;
 }
 
-.nav > li {
+/* メニューボタンのスタイル */
+.menu {
+  display: flex;
   position: relative;
-  width: 100px;
-  border-right: 1px solid #0071b9;
-}
-.nav > li:first-child{
-  border-left: 1px solid #0071b9;
 }
 
-.nav a {
-    display: block;
-    line-height: 1;
-    z-index: 1;
+.menu .menu_list {
+  width: 33.33%;
 }
 
-.mouseover:hover{
-    text-decoration: underline;
-    text-decoration-color: red;
+.menu .menu_list > a {
+  border: 1px solid #ccc;
+  display: block;
+  padding: 10px;
+  text-align: center;
+  transition: .3s;
 }
 
-.has-sub {
-    width: 200px;
+.menu .menu_list > a:hover {
+  color: #000;
+  text-decoration: underline;
+  text-decoration-color: red;
+  background: #fff;
 }
-
-.sub {
+ 
+/* メガメニューのスタイル */
+.menu_contents {
+  background: #fff;
   display: none;
   position: absolute;
+  top: 100%;
   left: 0;
-  top: 2em;
   width: 100%;
-  z-index: 3;
-}
-.sub > ul > li > a {
-  font-size: 16px;
-  color: #fff;
-  line-height: 1.75;
-  background-color: #0071b9;
-}
-.sub ul > li > a:hover {
-  background-color: #004b83;
-  opacity: 1;
 }
 
+.menu_contents li {
+  width: 100%;
+}
 
+.menu_contents li a {
+  color: #000;
+}
 
 .flex {
-    display: flex;
-    width: 500px;
-    gap: 0px 60px;
+	display: flex;
+	gap: 0px 200px;
+	justify-content: center;
 }
-.flex li {
-    width: 250px;
-}
+
 
