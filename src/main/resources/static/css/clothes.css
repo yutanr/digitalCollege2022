@@ -1,0 +1,48 @@
+body{
+    margin:0;
+}
+
+.carousel-photo-upper{
+	margin:auto;
+	height:100%;
+    width:100%;
+}
+
+.carousel-photo-upper ul{
+	padding-left: 0px;
+}
+.carousel-photo-upper img{
+	
+	height:100%;
+    width:100%;
+}
+.carousel-photo-beneath img{
+height:100%;
+    width:100%;
+}
+
+.carousel-photo-beneath ul{
+	padding-left: 0px;
+	}
+
+.slick-slide{
+    height:auto;
+}
+
+.carousel-photo-upper .slick-dots li button:before{
+    font-size:15px;
+}
+
+.carousel-photo-beneath .slick-dots li button:before{
+    font-size:15px;
+}
+
+.carousel-photo-upper .slick-dots{
+    z-index:10;
+    bottom:20px;
+}
+
+.carousel-photo-beneath .slick-dots{
+    z-index:10;
+    bottom:20px;
+}

@@ -2,7 +2,8 @@ package com.example.springbootsampleec.controllers;
  
 import java.util.ArrayList;
 import java.util.List;
- 
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute; 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,19 +11,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 
 import com.example.springbootsampleec.entities.User;
 import com.example.springbootsampleec.entities.Item;
 import com.example.springbootsampleec.forms.ItemCreateForm;
 import com.example.springbootsampleec.forms.ItemEditForm;
+import com.example.springbootsampleec.forms.ItemSearchForm;
 import com.example.springbootsampleec.services.ItemService;
- 
+
 @RequestMapping("/items")
 @Controller
 public class ItemController { 
@@ -32,18 +39,123 @@ public class ItemController {
         ItemService itemService
     ) {
         this.itemService = itemService;
+        
     }
+    
+    @PersistenceContext
+    EntityManager entityManager;
     
     @GetMapping("/")    
     public String index(
+        @AuthenticationPrincipal(expression = "user") User user,
+        @ModelAttribute("formModel") Item item,
+//        @PathVariable(name = "")	String name,
+//  		@PathVariable(name = "")	String description,
+//        @RequestParam(defaultValue = "1")	Long id,
+        Model model
+    ) {
+        List<Item> items = itemService.findAll();
+//        Optional<Item> items = itemService.findById(id);
+        model.addAttribute("msg", "検索");
+        model.addAttribute("user", user);
+        model.addAttribute("items", items);
+//        model.addAttribute("items", items);
+//        model.addAttribute("name", name);
+//      	model.addAttribute("description", description);
+        model.addAttribute("title", "商品一覧");
+        model.addAttribute("main", "items/index::main");
+        return "layout/logged_in";    
+    }
+    
+//    @RequestMapping("/data")
+//  public String data(
+//		  
+//  		@AuthenticationPrincipal(expression = "user") User user,
+//  		@ModelAttribute("formModel") Item item,
+//  		BindingResult bindingResult,
+//  		@RequestParam(defaultValue = "")	String name,
+//  		@RequestParam(defaultValue = "")	String description,
+//  		Model model
+//  		){
+//  	if(bindingResult.hasErrors()){
+//          return name;
+//      }
+//  	model.addAttribute("msg", "検索");
+//  	//itemのゲッターで各値を取得する
+//  	List<Item> items = ItemService.search(
+//  			item.getName(),
+//  			item.getDescription()
+//  			);
+//  	model.addAttribute("formModel",item);
+//  	model.addAttribute("user", user);
+//  	model.addAttribute("title", "商品一覧");
+////  	model.addAttribute("item", items);
+//  	model.addAttribute("name", name);
+//  	model.addAttribute("description", description);
+//  	 model.addAttribute("main", "items/index::main");
+//  	return "layout/logged_in";
+//  	
+//  }
+   
+    
+    @GetMapping("/data")
+    public String data(
+    		@AuthenticationPrincipal(expression = "user") User user,
+    		
+//    		@Valid ItemSearchForm itemSearchForm,
+    		 @RequestParam(defaultValue = "")  String name,
+    		 @RequestParam(defaultValue = "")  String description,
+//    		 BindingResult bindingResult,
+    		Model model
+    		
+    		){
+    	
+//    	List<Item> items = itemService.findAll();
+//      	Optional<Item> items = itemService.findAllByNameContaining(name);
+      	List<Item> items_name = itemService.findAllByNameContaining(name);
+      	List<Item> items_description = itemService.findAllByDescriptionContaining(description);
+      	
+      	model.addAttribute("user", user);
+      	model.addAttribute("items", items_name);
+      	model.addAttribute("items1", items_description);
+    	model.addAttribute("name", name);
+    	model.addAttribute("description", description);
+    	model.addAttribute("msg", "検索");
+    	model.addAttribute("title", "キーの取得");
+    	model.addAttribute("main", "items/index::main");
+    	return "layout/logged_in";
+    	
+    }
+    
+  //検索
+//    @GetMapping("/search")
+//    public String search(
+//    		@AuthenticationPrincipal(expression = "user") User user,
+//    		@PathVariable("name") String name,
+////            @RequestParam(defaultValue = "")  String name,
+//            Model model
+//    		) {
+////    	List<Item> items = itemService.findAll();
+////    	 Optional<List<Item>> items = itemService.findByNameContaining(name);
+////    	 Optional<Item> items = itemService.findAllByNameContaining(name);
+//    	List<Item> items = itemService.findAllByNameContaining(name,description);
+//         model.addAttribute("user", user);
+//         model.addAttribute("item", items);
+//         model.addAttribute("name", name);
+//         model.addAttribute("title", "kennsaku");
+//         model.addAttribute("main", "items/index::main");
+//         return "layout/logged_in";
+//    }
+    @GetMapping("/top")    
+    public String top(
         @AuthenticationPrincipal(expression = "user") User user,
         Model model
     ) {
         List<Item> items = itemService.findAll();
         model.addAttribute("user", user);
         model.addAttribute("items", items);
-        model.addAttribute("title", "商品一覧");
-        model.addAttribute("main", "items/index::main");
+        model.addAttribute("title", "TOP");
+        model.addAttribute("main", "items/top::main");
         return "layout/logged_in";    
     }
  
@@ -96,6 +208,23 @@ public class ItemController {
         model.addAttribute("main", "items/detail::main");
         return "layout/logged_in";    
     }
+    
+    
+    
+    //検索機能
+//    @PostMapping("search/{name}")
+//    public String searchName(
+//    		@AuthenticationPrincipal(expression = "user") User user,
+//    		@PathVariable("name")  String name,
+//    		Model model
+//    		) {
+//    	Optional<Item> items = itemService.findBynameLike(name);
+//    	model.addAttribute("items", items);
+//    	model.addAttribute("user", user);
+//        model.addAttribute("title", "検索結果");
+//        model.addAttribute("main", "items/search::main");
+//    	return "layout/logged_in";
+//    }
  
     @GetMapping("/edit/{id}")    
     public String edit(
@@ -150,4 +279,6 @@ public class ItemController {
             "商品の削除が完了しました");
         return "redirect:/admin";  
     }
+    
+   
 }
