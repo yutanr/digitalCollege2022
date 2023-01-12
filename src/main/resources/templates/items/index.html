@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main">
+	
+	<h1>[[${msg}]]</h1>
+	<form action="data" method="get" >
+		<p>postで送信</p>
+		<label>商品名</label>
+		<input type="text" name="name"><p>
+		<label>商品説明</label>
+		<input type="text" name="description" ><p>
+		<input type="submit" value="検索">
+	</form>
+	[[${name}]]
+	[[${description}]]
 	<div class="container contents">
 		<h1>[[ ${title} ]]</h1>
 		<p>ようこそ、[[ ${user.name} ]]さん。</p>
@@ -14,6 +26,7 @@
 				</div>
 			</form>
 		</div>
+		
 		<div class="row">
 			<div class="col-3">
 				<h2>メニュー</h2>
@@ -38,12 +51,15 @@
                                 <div>売り切れ</div>
                             </th:block>
 							<div>[[ ${item.description} ]]</div>
+							<div>商品id:[[ ${item.id} ]]</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
+	
 	<footer class="text-center">
 		<p class="footer-nav"><small><a href="#">返品・交換について</a>　|　<a href="#">お問い合わせ</a>　|　<a href="#">店舗検索</a>　|　<a href="#">企業情報</a>　|　<a href="#">プレスリリース</a>　|　<a href="#">サステナビリティ</a>　|　<a href="#">プライポリシー</a>　|　<a href="#">特定取引法に基づく表示</a>　|　<a href="#">利用規約</a></small></p><br>
 		<p class="footer-logo"><small>&copy;CodeCamp All Rights Reserved.</small></p>

@@ -11,6 +11,9 @@
 	display:none;
 }
 
+.item_edit {
+	height: 100px;
+}
 .item_table {
 	border-collapse: collapse;
 	margin-top: 20px;

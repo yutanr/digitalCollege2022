@@ -1,32 +1,27 @@
 package com.example.springbootsampleec.services.impl;
  
-import com.example.springbootsampleec.entities.User;
-import com.example.springbootsampleec.entities.Item;
-import com.example.springbootsampleec.repositories.ItemRepository;
-import com.example.springbootsampleec.services.ItemService;
- 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
- 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.Optional;
- 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
- 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.apache.commons.io.FilenameUtils;
 // gradle で追加
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
+import com.example.springbootsampleec.dao.impl.ItemDataDaoImpl;
+import com.example.springbootsampleec.entities.Item;
+import com.example.springbootsampleec.repositories.ItemRepository;
+import com.example.springbootsampleec.services.ItemService;
 
  
 @Service
@@ -35,6 +30,9 @@ public class ItemServiceImpl implements ItemService {
     
     @Autowired
     private Environment environment; // 環境変数を使えるように。
+    
+    @Autowired
+    private ItemDataDaoImpl itemDataDaoImpl;
  
     public ItemServiceImpl(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
@@ -51,6 +49,46 @@ public class ItemServiceImpl implements ItemService {
     public Optional<Item> findById(long id) {
         return itemRepository.findById(id);
     }
+    
+    @Transactional(readOnly = true)
+    public List<Item> search(String name, String description){
+    	List<Item> result = new ArrayList<Item>();
+    	//すべてブランクだった場合は全件検索する
+        if ("".equals(name) && "".equals(description)){
+            result = itemRepository.findAll();
+        }
+        else {
+            //上記以外の場合、BookDataDaoImplのメソッドを呼び出す
+            result = itemDataDaoImpl.search(name, description);
+        }
+    	return result;
+    }
+    
+    //追記 検索機能
+//    @Transactional(readOnly = true)
+//    @Override
+////    public Optional<Item> findByNameContaining(String name){
+//    public Optional<Item> findAllByNameContaining(String name){
+////    public Optional<List<Item>> findByNameContaining(String name){
+//    	return itemRepository.findAllByNameContaining(name);
+////    	return itemRepository.findByNameContaining(name);
+//    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Item> findAllByNameContaining(String name){
+    	return itemRepository.findAllByNameContaining(name);
+    }
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<Item> findAllByDescriptionContaining(String description){
+    	return itemRepository.findAllByDescriptionContaining(description);
+    }
+//	public Optional<Item> findBynameLike(String name) {
+//		return itemRepository.findBynameLike(name);
+//		
+//	}
     
     @Transactional(readOnly = true)
     @Override
@@ -100,5 +138,7 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
         }
     }
+
+	
 
 }
