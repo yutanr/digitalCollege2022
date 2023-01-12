@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login") // th:actionに指定したURLを設定
                 .usernameParameter("email") // ログインフォームのユーザー欄のname属性を設定
                 .passwordParameter("password") // ログインフォームのパスワード欄のname属性を設定
-                .defaultSuccessUrl("/items/", true) // ログイン成功時に遷移するURL
+                .defaultSuccessUrl("/items/top", true) // ログイン成功時に遷移するURL
                 .failureUrl("/login?error")
                 .permitAll()
             .and()
