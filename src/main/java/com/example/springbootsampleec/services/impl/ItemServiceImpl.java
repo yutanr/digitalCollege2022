@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.springbootsampleec.dao.impl.ItemDataDaoImpl;
 import com.example.springbootsampleec.entities.Item;
+import com.example.springbootsampleec.entities.User;
 import com.example.springbootsampleec.repositories.ItemRepository;
 import com.example.springbootsampleec.services.ItemService;
 
@@ -120,7 +121,7 @@ public class ItemServiceImpl implements ItemService {
         String randomFileName = RandomStringUtils.randomAlphanumeric(20) + "." + extension;
         uploadImage(image, randomFileName);
         // Item エンティティの生成
-        Item item = new Item(null, name, price, stock, description, randomFileName, null, null);
+        Item item = new Item(null, null, null, name, price, stock, description, randomFileName, null, null);
  
         // Item を保存
         itemRepository.saveAndFlush(item);
@@ -138,7 +139,25 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
         }
     }
+    @Transactional(readOnly = true)
+	@Override
+	public List<Item> findAllById(long id) {
+		// TODO 自動生成されたメソッド・スタブ
+		return itemRepository.findAllById(id);
+	}
 
+	@Override
+	public void getOrderItems(User user, long Item_id) {
+		// TODO 自動生成されたメソッド・スタブ
+		Item item = findById(Item_id).orElseThrow();
+		addcart(user,item);
+	}
+    private void addcart(User user, Item item){
+        item.getOrderedUsers().add(user);
+        itemRepository.saveAndFlush(item);
+    }
+    
+ 
 	
 
 }

@@ -48,6 +48,11 @@ public interface ItemService {
     List<Item> findAllByNameContaining(String name);
     List<Item> findAllByDescriptionContaining(String description);
 //	List<Item> search(String name, String description);
+
+	List<Item> findAllById(long id);
+	
+	void getOrderItems(User user, long Item_id);
+//	void addItem(User user, long Item_id);
 	
 	
 }

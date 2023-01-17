@@ -98,7 +98,7 @@ public class ItemController {
 //  }
    
     
-    @GetMapping("/data")
+    @GetMapping("/data")//検索
     public String data(
     		@AuthenticationPrincipal(expression = "user") User user,
     		
@@ -280,5 +280,26 @@ public class ItemController {
         return "redirect:/admin";  
     }
     
+    @PostMapping("/addcart/{id}")
+    public String addcart(
+    		@PathVariable("id")  Integer id,
+    		@AuthenticationPrincipal(expression = "user") User user,
+            Model model) {
+//    	List<Item> items = itemService.findAllById(id);
+//    	List<Item> items = itemService.findAll();
+//        Item item = itemService.findById(id).orElseThrow();
+        itemService.getOrderItems(
+        		user,
+        		id
+        		);
+        return "redirect:/items/";
+//        model.addAttribute("item", item);
+//        model.addAttribute("item", item);
+//        model.addAttribute("user", user);
+//        model.addAttribute("name", "name");
+//        model.addAttribute("title", "カートに追加しました");
+//        model.addAttribute("main", "items/cart::main");
+//        return "layout/logged_in";    
+    }
    
 }

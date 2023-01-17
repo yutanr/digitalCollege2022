@@ -1,16 +1,25 @@
 package com.example.springbootsampleec.entities;
  
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
  
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
- 
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany; 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +29,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // id
+    
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+    private List<Item> items;
+    
+    // ManyToMany, JoinTable を追記
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="cart",
+        joinColumns = @JoinColumn(name="user_id", referencedColumnName="id"),
+        inverseJoinColumns = @JoinColumn(name="item_id", referencedColumnName="id"))
+    private Set<Item> orderItems = new HashSet<Item>();
+ 
  
     @Column(name = "name", length = 60, nullable = false)
     private String name; // ユーザー名
@@ -35,4 +55,23 @@ public class User {
  
     @Column(name = "enable_flag", nullable = false)
     private Boolean enable; // 有効フラグ
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(name, other.name);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, id, name);
+	}
+
+
 }

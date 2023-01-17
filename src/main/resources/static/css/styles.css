@@ -11,6 +11,9 @@
 	display:none;
 }
 
+.cart_item {
+	height: 300px;
+}
 .item_edit {
 	height: 100px;
 }

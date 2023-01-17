@@ -52,7 +52,11 @@
                             </th:block>
 							<div>[[ ${item.description} ]]</div>
 							<div>商品id:[[ ${item.id} ]]</div>
+							<form method="post" class="addcart" th:action="@{/items/addcart/{id} (id=${item.id})}">
+								<input type="submit" value="カートに追加" >
+							</form>
 						</div>
+						
 					</div>
 				</div>
 			</div>

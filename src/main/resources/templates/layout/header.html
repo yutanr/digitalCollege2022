@@ -30,7 +30,7 @@
         </nav>
         <ul class="header_cart">
             <li class="padding">お気に入り|</li>
-            <li>カート</li>
+            <li><a th:href="@{/users/cart/{id} (id=${user.id})}">カート</a></li>
         </ul>
         <form class="form_position">
             <input type="text" class="text"><button>検索</button>

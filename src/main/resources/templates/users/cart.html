@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="main">
+    <h1>[[ ${title} ]]</h1>
+    <dl>
+        <dt>ユーザー名</dt>
+        <dd>[[ ${user.name} ]]</dd>
+    </dl>
+    <h2>カート</h2>
+    <ul th:each="item : ${user.orderItems}">
+        <li>
+            <h2 class="item_title">
+							    <a th:href="@{/items/detail/{id} (id=${item.id})}">
+                                    [[ ${item.name} ]]: 
+                                </a>
+                            </h2>
+            <p><img class="cart_item" th:src="@{/images/{image} (image=${item.image})}"></p>
+        </li>
+    </ul>
+</div>
+</html>
