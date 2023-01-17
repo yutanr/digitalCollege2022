@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main">
-	<div class="container contents">
+	<div class="container-fluid">
 		<h1>[[ ${title} ]]</h1>
 		<p>ようこそ、[[ ${user.name} ]]さん。</p>
 		
 	
-	<div class="carousel-photo-upper">
-	<ul id="carousel">
-    <li><a href="/items/"><img src="../images/clothes_photo1.jpeg"></a></li>
-    <li><a href="#"><img src="../images/clothes_photo2.jpeg"></a></li>
-    <li><a href="#"><img src="../images/clothes_photo3.jpeg"></a></li>
-    <li><a href="#"><img src="../images/clothes_photo4.jpeg"></a></li>
+	<div class="carousel-upper">
+	<ul class="carousel-photo-upper">
+    <li><a href="/items/"><img class="upper-img" src="../images/clothes_photo1.jpeg"></a></li>
+    <li><a href="#"><img class="upper-img" src="../images/clothes_photo2.jpeg"></a></li>
+    <li><a href="#"><img class="upper-img" src="../images/clothes_photo3.jpeg"></a></li>
+    <li><a href="#"><img class="upper-img" src="../images/clothes_photo4.jpeg"></a></li>
     </ul>
     </div>
  
  
-    <div class="carousel-photo-beneath">
-    <ul id="carousel-beneath">
-    <li><a href="#"><img src="../images/clothes_photo5.jpeg"></a></li>
-    <li><a href="#"><img src="../images/clothes_photo6.jpeg"></a></li>
-    <li><a href="#"><img src="../images/clothes_photo7.jpeg"></a></li>
-    <li><a href="#"><img src="../images/clothes_photo8.jpeg"></a></li>
+    <div class="carousel-beneath">
+    <ul class="carousel-photo-beneath">
+    <li><a href="#"><img class="beneath-img" src="../images/clothes_photo5.jpeg"></a></li>
+    <li><a href="#"><img class="beneath-img" src="../images/clothes_photo6.jpeg"></a></li>
+    <li><a href="#"><img class="beneath-img" src="../images/clothes_photo7.jpeg"></a></li>
+    <li><a href="#"><img class="beneath-img" src="../images/clothes_photo8.jpeg"></a></li>
     </ul>
     </div>
     
