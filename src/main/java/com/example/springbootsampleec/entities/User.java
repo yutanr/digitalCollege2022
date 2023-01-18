@@ -1,15 +1,23 @@
 package com.example.springbootsampleec.entities;
  
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
- 
+
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import javax.persistence.JoinColumn;
  
 @Data
 @NoArgsConstructor
@@ -21,6 +29,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // id
  
+    // ManyToMany, JoinTable を追記
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="likes",
+    	joinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"),
+    	inverseJoinColumns = @JoinColumn(name="item_id", referencedColumnName = "id"))
+	private Set<Item> likeItems = new HashSet<Item>();
+    
     @Column(name = "name", length = 60, nullable = false)
     private String name; // ユーザー名
  
