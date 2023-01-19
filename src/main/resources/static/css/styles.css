@@ -12,8 +12,21 @@
 }
 
 .cart_item {
-	height: 300px;
+	height: 100px;
+	
 }
+.cart_border {
+	
+	border: 3px 0 0 0;
+	border-style: solid;
+	color:rgb(64, 0, 64);
+}
+
+#item_price_total {
+  border: none;
+  cursor: default;
+}
+
 .item_edit {
 	height: 100px;
 }

@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main">
-    <h1>[[ ${title} ]]</h1>
-    <dl>
-        <dt>ユーザー名</dt>
-        <dd>[[ ${user.name} ]]</dd>
-    </dl>
-    <h2>カート</h2>
-    <ul th:each="item : ${user.orderItems}">
-        <li>
-            <h2 class="item_title">
-							    <a th:href="@{/items/detail/{id} (id=${item.id})}">
-                                    [[ ${item.name} ]]: 
-                                </a>
-                            </h2>
-            <p><img class="cart_item" th:src="@{/images/{image} (image=${item.image})}"></p>
-        </li>
-    </ul>
+	<h1>[[ ${title} ]]</h1>
+
+
+	<div class="container">
+		<div th:each="item : ${user.orderItems}">
+			<hr class="cart_border">
+			<div class="cart_total">
+				<p><img class="cart_item" th:src="@{/images/{image} (image=${item.image})}"></p>
+				<h2 class="item_title" th:data-price="${item.price}">
+					<a th:href="@{/items/detail/{id} (id=${item.id})}">
+						[[ ${item.name} ]]: [[ ${item.price} ]]円
+					</a>
+				</h2>
+				<select name="num">
+					<option data-num="0" value="0">0</option>
+					<option data-num="1" value="1" selected>1</option>　/*　←初期値は「selected」を入れておく　*/
+					<option data-num="2" value="2">2</option>
+					<option data-num="3" value="3">3</option>
+					<option data-num="4" value="4">4</option>
+					<option data-num="5" value="5">5</option>
+				</select>
+
+			</div>
+		</div>
+
+	</div>
+	<hr class="cart_border">
+
+
+	<div class="total_price container">
+		<span th:text="|合計金額： |"></span>
+		<input id="item_price_total" class="" name="小計" value="0円" readonly>
+	</div>
+
+
 </div>
+
 </html>
