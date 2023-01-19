@@ -52,30 +52,6 @@ public class ItemServiceImpl implements ItemService {
     }
     
     @Transactional(readOnly = true)
-    public List<Item> search(String name, String description){
-    	List<Item> result = new ArrayList<Item>();
-    	//すべてブランクだった場合は全件検索する
-        if ("".equals(name) && "".equals(description)){
-            result = itemRepository.findAll();
-        }
-        else {
-            //上記以外の場合、BookDataDaoImplのメソッドを呼び出す
-            result = itemDataDaoImpl.search(name, description);
-        }
-    	return result;
-    }
-    
-    //追記 検索機能
-//    @Transactional(readOnly = true)
-//    @Override
-////    public Optional<Item> findByNameContaining(String name){
-//    public Optional<Item> findAllByNameContaining(String name){
-////    public Optional<List<Item>> findByNameContaining(String name){
-//    	return itemRepository.findAllByNameContaining(name);
-////    	return itemRepository.findByNameContaining(name);
-//    }
-    
-    @Transactional(readOnly = true)
     @Override
     public List<Item> findAllByNameContaining(String name){
     	return itemRepository.findAllByNameContaining(name);
@@ -86,10 +62,38 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> findAllByDescriptionContaining(String description){
     	return itemRepository.findAllByDescriptionContaining(description);
     }
-//	public Optional<Item> findBynameLike(String name) {
-//		return itemRepository.findBynameLike(name);
-//		
-//	}
+    
+    
+    @Transactional(readOnly = true)
+    public List<Item> search(String name, String description){
+    	List<Item> result = new ArrayList<Item>();
+    	//すべてブランクだった場合は全件検索する
+        if ("".equals(name) && "".equals(description)){
+            result = itemRepository.findAll();
+        }
+        else if("".equals(description)){
+            //descriptionが空欄の場合nameの値で検索する
+            result = itemRepository.findAllByNameContaining(name);
+        }
+        else if("".equals(name)){
+        	//nameが空欄の場合descriptionの値で検索する
+        	result = itemRepository.findAllByDescriptionContaining(description);
+        }
+        else {
+        	List<Item> nameResult = itemRepository.findAllByNameContaining(name);
+        	List<Item> descriptionResult = itemRepository.findAllByDescriptionContaining(description);
+        	
+        	for(Item a : nameResult) {
+        		for(Item b : descriptionResult) {
+        			if(a.equals(b)) {
+        				result.add(a);
+        				break;
+        			}
+        		}
+        	}
+        }
+    	return result;
+    }
     
     @Transactional(readOnly = true)
     @Override

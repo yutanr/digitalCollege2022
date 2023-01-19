@@ -112,12 +112,12 @@ public class ItemController {
     	
 //    	List<Item> items = itemService.findAll();
 //      	Optional<Item> items = itemService.findAllByNameContaining(name);
-      	List<Item> items_name = itemService.findAllByNameContaining(name);
-      	List<Item> items_description = itemService.findAllByDescriptionContaining(description);
-      	
+//      	List<Item> items_name = itemService.findAllByNameContaining(name);
+//      	List<Item> items_description = itemService.findAllByDescriptionContaining(description);
+      	List<Item> search_result = itemService.search(name, description);
       	model.addAttribute("user", user);
-      	model.addAttribute("items", items_name);
-      	model.addAttribute("items1", items_description);
+      	model.addAttribute("items", search_result); //エラーはいたら items_name に差し替え
+//      	model.addAttribute("items1", items_description);
     	model.addAttribute("name", name);
     	model.addAttribute("description", description);
     	model.addAttribute("msg", "検索");
