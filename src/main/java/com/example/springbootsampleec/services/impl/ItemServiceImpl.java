@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.springbootsampleec.dao.impl.ItemDataDaoImpl;
 import com.example.springbootsampleec.entities.Item;
+import com.example.springbootsampleec.entities.User;
 import com.example.springbootsampleec.repositories.ItemRepository;
 import com.example.springbootsampleec.services.ItemService;
 
@@ -106,6 +107,26 @@ public class ItemServiceImpl implements ItemService {
     public void delete(long id) {
         Item item =  findById(id).orElseThrow();
         itemRepository.delete(item);
+    }
+    
+    @Override
+    public void toggleLike(User user, long item_id){
+    	Item item =  findById(item_id).orElseThrow();
+        if(item.getLikedUsers().contains(user)){
+            dislike(user, item);
+            return;
+        }
+        like(user,item);
+    }
+ 
+    private void like(User user, Item item){
+    	item.getLikedUsers().add(user);
+    	itemRepository.saveAndFlush(item);
+    }
+ 
+    private void dislike(User user, Item item){
+    	item.getLikedUsers().remove(user);
+        itemRepository.saveAndFlush(item);
     }
  
     @Transactional
