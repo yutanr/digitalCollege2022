@@ -12,11 +12,10 @@ import java.util.Optional;
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
 	Optional<Item> findById(long id);
-//	Optional<Item> findBynameLike(String name);
 
-//	Optional<Item> findByNameContaining(String name);
-//	Optional<Item> findAllByNameContaining(String name);
 	List<Item> findAllByNameContaining(String name);
+	
 	List<Item> findAllByDescriptionContaining(String description);
-//	Optional<List<Item>> findByNameContaining(String name);
+
+	List<Item> findAllById(long id);
 }
