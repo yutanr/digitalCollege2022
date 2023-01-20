@@ -18,23 +18,7 @@ public interface ItemService {
     // ID を指定して投稿を取得
     Optional<Item> findById(long id);
     
-    static // 検索
-     List<Item> search(String name, String description){
-    	List<Item> result = new ArrayList<Item>();
-    	//すべてブランクだった場合は全件検索する
-//        if ("".equals(name) && "".equals(description)){
-//            result = ItemRepository.findAll();
-//        }
-//        else {
-            //上記以外の場合、BookDataDaoImplのメソッドを呼び出す
-//            result = ItemDataDaoImpl.search(name, description);
-//        }
-        return result;
-        }
-//    Optional<Item> findBynameLike(String name);
-//    Optional<Item> findByNameContaining(String name);
-//    List<Item> findByNameContaining(String name);
-//    Optional<List<Item>> findByNameContaining(String name);
+
     
     
     // 商品情報を更新
@@ -44,10 +28,16 @@ public interface ItemService {
     // 投稿の登録
     void register(String name, int price, int stock, String description, MultipartFile image);
 	
-//    Optional<Item> findAllByNameContaining(String name);
+
     List<Item> findAllByNameContaining(String name);
     List<Item> findAllByDescriptionContaining(String description);
-//	List<Item> search(String name, String description);
+    List<Item> search(String name, String description);
+
+	List<Item> findAllById(long id);
+	
+	void getOrderItems(User user, long Item_id);
+//	void addItem(User user, long Item_id);
+	void getDeleteItems(User user, long Item_id);
 	
 	
 }

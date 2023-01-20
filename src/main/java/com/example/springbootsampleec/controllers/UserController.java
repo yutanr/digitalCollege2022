@@ -85,4 +85,17 @@ public class UserController {
         model.addAttribute("main", "users/edit::main");
         return "layout/logged_in";    
     }
+    
+    @GetMapping("/cart/{id}")
+    public String cart(
+            @AuthenticationPrincipal(expression = "user") User loginUser,
+            @PathVariable("id")  Integer id,
+            Model model) {
+            User user = userService.findById(id).orElseThrow();
+            model.addAttribute("user", user);
+            model.addAttribute("title", "カートの中身");
+            model.addAttribute("main", "users/cart::main");
+            return "layout/logged_in";    
+        }
+
 }

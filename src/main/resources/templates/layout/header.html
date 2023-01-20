@@ -29,12 +29,22 @@
             </div>
         </nav>
         <ul class="header_cart">
+			<li class="padding2"><a th:href="@{/users/detail/{id} (id=${user.id})}">プロフィール|</a></li>
             <li class="padding">お気に入り|</li>
-            <li>カート</li>
+            <li><a th:href="@{/users/cart/{id} (id=${user.id})}">カート</a></li>
         </ul>
-        <form class="form_position">
+        
+    <form class="form_position" action="data" method="get" >
+		<input type="text" class="text" name="name" placeholder="商品名の一部を入れて検索">
+
+		<input type="text" class="text" name="description" placeholder="商品説明の一部を入れて検索">
+		<input type="submit" value="検索">
+
+	</form>
+	
+        <!--form class="form_position">
             <input type="text" class="text"><button>検索</button>
-        </form>
+        </form-->
         <ul class="menu" id="menu">
  
 		  <!-- メニューボタン
@@ -50,10 +60,10 @@
 		  </li>
 		 
 		  <li class="menu_list">
-		  	<a href="#">WOMEN</a>
+		  	<a href="/items/data?name=womens">WOMEN</a>
 		    <div class="menu_contents flex">
 		      <ul>
-		      	<li><a href="#">WOMEN TOP</a></li>
+		      	<li><a href="/items/data?name=womens">WOMEN TOP</a></li>
 		        <li><a href="#">アウター</a></li>
 		        <li><a href="#">トップス</a></li>
 		        <li><a href="#">パンツ</a></li>
@@ -171,10 +181,10 @@
 		  </li>
 		 
 		  <li class="menu_list">
-		    <a href="#">WOMEN</a>
+		    <a href="/items/data?name=womens">WOMEN</a>
 		    <div class="menu_contents flex">
 		      <ul>
-		        <li><a href="#">WOMEN TOP</a></li>
+		        <li><a href="/items/data?name=womens">WOMEN TOP</a></li>
 		        <li><a href="#">アウター</a></li>
 		        <li><a href="#">トップス</a></li>
 		        <li><a href="#">パンツ</a></li>
