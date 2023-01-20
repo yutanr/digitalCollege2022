@@ -112,6 +112,8 @@ public class ItemServiceImpl implements ItemService {
         Item item =  findById(id).orElseThrow();
         itemRepository.delete(item);
     }
+    
+
  
     @Transactional
     @Override
@@ -156,10 +158,25 @@ public class ItemServiceImpl implements ItemService {
 		Item item = findById(Item_id).orElseThrow();
 		addcart(user,item);
 	}
+	
+	@Override
+	public void getDeleteItems(User user, long Item_id) {
+		// TODO 自動生成されたメソッド・スタブ
+		Item item = findById(Item_id).orElseThrow();
+		deletecart(user,item);
+		
+	}
+	
     private void addcart(User user, Item item){
         item.getOrderedUsers().add(user);
         itemRepository.saveAndFlush(item);
     }
+    private void deletecart(User user, Item item){
+        item.getOrderedUsers().remove(user);
+        itemRepository.saveAndFlush(item);
+    }
+
+
     
  
 	

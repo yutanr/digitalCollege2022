@@ -37,6 +37,7 @@ public interface ItemService {
 	
 	void getOrderItems(User user, long Item_id);
 //	void addItem(User user, long Item_id);
+	void getDeleteItems(User user, long Item_id);
 	
 	
 }

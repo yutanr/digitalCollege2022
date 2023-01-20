@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main">
-	<div class="container contents">
-		<h1>[[ ${title} ]]</h1>
-		<p>ようこそ、[[ ${user.name} ]]さん。</p>
+	<div class="container-fluid contents">
+		<!--h1>[[ ${title} ]]</h1>
+		<p>ようこそ、[[ ${user.name} ]]さん。</p-->
 		
-	
+	<div class="row" style="height: 200px"></div>
 	<div class="carousel-photo-upper">
 	<ul id="carousel">
     <li><a href="/items/"><img src="../images/clothes_photo1.jpeg"></a></li>

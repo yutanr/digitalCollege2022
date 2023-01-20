@@ -22,6 +22,9 @@
 					<option data-num="4" value="4">4</option>
 					<option data-num="5" value="5">5</option>
 				</select>
+				<form method="post" class="deletecart" th:action="@{/items/deletecart/{id} (id=${item.id})}">
+					<input type="submit" value="削除">
+				</form>
 
 			</div>
 		</div>
@@ -34,6 +37,9 @@
 		<span th:text="|合計金額： |"></span>
 		<input id="item_price_total" class="" name="小計" value="0円" readonly>
 	</div>
+	<form method="post" class="order container">
+		<input type="button" value="注文を確定する">
+	</form>
 
 
 </div>
