@@ -113,7 +113,25 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.delete(item);
     }
     
-
+    @Override
+    public void toggleLike(User user, long item_id){
+    	Item item =  findById(item_id).orElseThrow();
+        if(item.getLikedUsers().contains(user)){
+            dislike(user, item);
+            return;
+        }
+        like(user,item);
+    }
+ 
+    private void like(User user, Item item){
+    	item.getLikedUsers().add(user);
+    	itemRepository.saveAndFlush(item);
+    }
+ 
+    private void dislike(User user, Item item){
+    	item.getLikedUsers().remove(user);
+        itemRepository.saveAndFlush(item);
+    }
  
     @Transactional
     @Override
@@ -127,7 +145,10 @@ public class ItemServiceImpl implements ItemService {
         String randomFileName = RandomStringUtils.randomAlphanumeric(20) + "." + extension;
         uploadImage(image, randomFileName);
         // Item エンティティの生成
+
+        //Item item = new Item(null, null, name, price, stock, description, randomFileName, null, null);
         Item item = new Item(null, null, null, name, price, stock, description, randomFileName, null, null);
+
  
         // Item を保存
         itemRepository.saveAndFlush(item);

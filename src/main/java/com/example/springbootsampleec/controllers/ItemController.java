@@ -191,6 +191,19 @@ public class ItemController {
         return "redirect:/admin";  
     }
     
+    // ブックマーク機能
+    @PostMapping("/toggleLike/{id}")    
+    public String toggleLike(
+        @PathVariable("id")  Integer id,
+        @AuthenticationPrincipal(expression = "user") User user,
+        Model model) {
+        itemService.toggleLike(
+            user,
+            id
+        );
+        return "redirect:/items/";  
+    }
+    
     @PostMapping("/addcart/{id}")
     public String addcart(
     		@PathVariable("id")  Integer id,

@@ -1,25 +1,25 @@
 package com.example.springbootsampleec.entities;
  
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
- 
-import java.time.ZonedDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Table;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.Data;
-import javax.persistence.JoinColumn;
+import lombok.NoArgsConstructor;
  
 @Data
 @NoArgsConstructor
@@ -41,6 +41,13 @@ public class Item {
         inverseJoinColumns = @JoinColumn(name="user_id", referencedColumnName="id"))
     private Set<User> orderedUsers = new HashSet<User>();
  
+    // ManyToMany, JoinTable を追記
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="likes",
+    	joinColumns = @JoinColumn(name="item_id", referencedColumnName = "id"),
+    	inverseJoinColumns = @JoinColumn(name="user_id", referencedColumnName = "id"))
+    private Set<User> likedUsers = new HashSet<User>();
+    
     @Column(name = "name", length = 200, nullable = false)
     private String name; // 商品名
     

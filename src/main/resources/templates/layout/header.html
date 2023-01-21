@@ -3,7 +3,6 @@
  
 <div th:fragment="loggedInHeader">
     <header>
-    
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
             <a class="navbar-brand logo" href="/items/top">トップ</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#header_nav">
@@ -28,11 +27,15 @@
                 </ul>
             </div>
         </nav>
+
         <ul class="header_cart">
 			<li class="padding2"><a th:href="@{/users/detail/{id} (id=${user.id})}">プロフィール|</a></li>
             <li class="padding">お気に入り|</li>
             <li><a th:href="@{/users/cart/{id} (id=${user.id})}">カート</a></li>
         </ul>
+
+        <!--form class="form_position"-->
+
         
     <form class="form_position" action="data" method="get" >
 		<input type="text" class="text" name="name" placeholder="商品名の一部を入れて検索">
@@ -148,6 +151,7 @@
 		  </li>
 		 
 		</ul>
+
     </header>
 </div>
  
