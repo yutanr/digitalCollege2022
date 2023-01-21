@@ -10,10 +10,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,6 +30,16 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // id
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user; // ユーザーid
+ 
+    // 追記
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="cart",
+        joinColumns = @JoinColumn(name="item_id", referencedColumnName="id"),
+        inverseJoinColumns = @JoinColumn(name="user_id", referencedColumnName="id"))
+    private Set<User> orderedUsers = new HashSet<User>();
  
     // ManyToMany, JoinTable を追記
     @ManyToMany(fetch=FetchType.EAGER)

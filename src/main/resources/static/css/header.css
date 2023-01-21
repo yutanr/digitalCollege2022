@@ -29,6 +29,9 @@ a {
 .padding {
     padding-right: 40px;
 }
+.padding2 {
+    padding-right: 110px;
+}
 
 .form_position {
     text-align: center;
@@ -36,7 +39,7 @@ a {
 
 
 .text {
-    width: 600px;
+    width: 300px;
     background-color: #f2f2f2;
 }
 

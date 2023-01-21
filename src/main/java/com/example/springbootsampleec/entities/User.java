@@ -1,6 +1,7 @@
 package com.example.springbootsampleec.entities;
  
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -10,16 +11,19 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.JoinColumn;
- 
+import javax.persistence.ManyToMany; 
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,6 +33,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // id
+    
+    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+    private List<Item> items;
+    
+    // ManyToMany, JoinTable を追記
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="cart",
+        joinColumns = @JoinColumn(name="user_id", referencedColumnName="id"),
+        inverseJoinColumns = @JoinColumn(name="item_id", referencedColumnName="id"))
+    private Set<Item> orderItems = new HashSet<Item>();
+ 
  
     // ManyToMany, JoinTable を追記
     @ManyToMany(fetch=FetchType.EAGER)

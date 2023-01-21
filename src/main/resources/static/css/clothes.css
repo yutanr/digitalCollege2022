@@ -2,39 +2,28 @@ body{
     margin:0;
 }
 
-.carousel-photo-upper{
-	margin:auto;
-	height:100%;
-    width:100%;
+img{
+    vertical-align: middle;
+    
 }
 
-.carousel-photo-upper ul{
-	padding-left: 0px;
-}
-.carousel-photo-upper img{
-	
-	height:100%;
+.upper-img{
     width:100%;
-}
-.carousel-photo-beneath img{
-height:100%;
-    width:100%;
+    height:100vh;
+    
 }
 
-.carousel-photo-beneath ul{
-	padding-left: 0px;
-	}
-
-.slick-slide{
-    height:auto;
+.beneath-img{
+    width:100%;
+    height:100vh;
 }
 
 .carousel-photo-upper .slick-dots li button:before{
-    font-size:15px;
+    font-size:80px;
 }
 
 .carousel-photo-beneath .slick-dots li button:before{
-    font-size:15px;
+    font-size:80px;
 }
 
 .carousel-photo-upper .slick-dots{
@@ -45,4 +34,24 @@ height:100%;
 .carousel-photo-beneath .slick-dots{
     z-index:10;
     bottom:20px;
+}
+
+.slick-dotted.slick-slider {
+    margin-bottom: 0;
+}
+
+.carousel-photo-upper .slick-prev,
+.carousel-photo-beneath .slick-prev {
+    left: 10px;
+    z-index:1;
+}
+
+.carousel-photo-upper .slick-next,
+.carousel-photo-beneath .slick-next {
+  right: 36px;
+}
+
+
+.carousel-photo-upper .slick-prev {
+  left: 26px;
 }

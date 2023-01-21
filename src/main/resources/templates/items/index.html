@@ -1,36 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main">
-	
-	<h1>[[${msg}]]</h1>
-	<form action="data" method="get" >
-		<p>postで送信</p>
-		<label>商品名</label>
-		<input type="text" name="name"><p>
-		<label>商品説明</label>
-		<input type="text" name="description" ><p>
-		<input type="submit" value="検索">
-	</form>
-	[[${name}]]
-	[[${description}]]
 	<div class="container contents">
-		<h1>[[ ${title} ]]</h1>
-		<p>ようこそ、[[ ${user.name} ]]さん。</p>
+
 		<div class="row">
-			<form class="search col-6">
+			<div style="height: 200px;"></div>
+			<!--form class="search col-6">
 				<div class="input-group">
 					<input class="form-control" type="text" name="keyword" placeholder="商品名の一部を入れて検索">
 					<span class="input-group-append">
 						<input class="btn btn-outline-secondary" type="submit" value="検索" >
 					</span>
 				</div>
-			</form>
+			</form-->
 		</div>
-		
+		<a href="/items/">TOP</a>&gt;<a th:href="|data?name=${name}|">[[${name}]]</a>
 		<div class="row">
 			<div class="col-3">
-				<h2>メニュー</h2>
-				<p>ここに各種メニューを追加してください。</p>
+
 			</div>
 			<div class="col-9">
 				<div class="card item" th:each="item : ${items}">
@@ -55,7 +42,11 @@
                             </th:block>
 							<div>[[ ${item.description} ]]</div>
 							<div>商品id:[[ ${item.id} ]]</div>
+							<form method="post" class="addcart" th:action="@{/items/addcart/{id} (id=${item.id})}">
+								<input type="submit" value="カートに追加" >
+							</form>
 						</div>
+						
 					</div>
 				</div>
 			</div>
