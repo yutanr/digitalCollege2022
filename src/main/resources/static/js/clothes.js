@@ -1,4 +1,4 @@
-$('.carousel-photo-upper').slick({
+$('#carousel').slick({
     dots:true,
     fade:false,
     infinete:true,

@@ -84,6 +84,9 @@
                                     [[ ${item.name} ]]: 
                                 </a>
                             </h2>
+                            <form method="post" class="like" th:action="@{/items/toggleLike/{id} (id=${item.id})}">
+                				<button type="submit">[[ ${item.likedUsers.contains(user) ? '★' : '☆'} ]]</button>
+            				</form>
                             <th:block th:if="${item.stock > 0}">
                                 <div>[[ ${item.price} ]]円</div>
                             </th:block>

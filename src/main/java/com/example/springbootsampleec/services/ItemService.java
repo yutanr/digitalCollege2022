@@ -31,6 +31,10 @@ public interface ItemService {
 
     List<Item> findAllByNameContaining(String name);
     List<Item> findAllByDescriptionContaining(String description);
+//	List<Item> search(String name, String description);
+    
+    // ブックマーク処理
+    void toggleLike(User user, long item_id);
     List<Item> search(String name, String description);
 
 	List<Item> findAllById(long id);

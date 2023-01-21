@@ -6,5 +6,15 @@
         <dt>ユーザー名</dt>
         <dd>[[ ${user.name} ]]</dd>
     </dl>
+    <h2>ブックマークしている投稿</h2>
+    <ul th:each="item : ${user.likeItems}">
+        <li>
+            <a th:href="@{/items/detail/{id} (id=${item.id})}">
+                [[ ${item.user.name} ]]: 
+                [[ ${item.comment} ]]([[ ${#temporals.format(item.createdAt, 'yyyy/MM/dd')} ]])
+            </a>
+            <p><img class="item" th:src="@{/images/{image} (image=${item.image})}"></p>
+        </li>
+    </ul>
 </div>
 </html>
