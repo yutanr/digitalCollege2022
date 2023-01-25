@@ -93,7 +93,7 @@ public class UserController {
             Model model) {
             User user = userService.findById(id).orElseThrow();
             model.addAttribute("user", user);
-            model.addAttribute("title", "カートの中身");
+            model.addAttribute("title", "カート");
             model.addAttribute("main", "users/cart::main");
             return "layout/logged_in";    
         }
