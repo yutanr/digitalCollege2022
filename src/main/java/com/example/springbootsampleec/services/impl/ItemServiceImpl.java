@@ -95,7 +95,7 @@ public class ItemServiceImpl implements ItemService {
     	return result;
     }
     
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
     public void updateItem(long id, String name, int price, int stock, String description) {
         Item item =  findById(id).orElseThrow();
