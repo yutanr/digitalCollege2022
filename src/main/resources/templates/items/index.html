@@ -20,7 +20,7 @@
 						<div class="col-12 item_description">
 							<h2 class="item_title">
 								<a th:href="@{/items/detail/{id} (id=${item.id})}">
-									[[ ${item.name} ]]:
+									[[ ${item.name} ]]
 								</a>
 							</h2>
 							<form method="post" class="like" th:action="@{/items/toggleLike/{id} (id=${item.id})}">
@@ -36,7 +36,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+
 
 
 <footer class="text-center">
