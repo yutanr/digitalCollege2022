@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main">
-	<h1>[[ ${title} ]]</h1>
+
 
 
 	<div class="container">
+		<div class="row">
+			<div class="col-12" style="height: 200px;"></div>
+		</div>
+		<!--メガメニュー用の余白-->
+			<h1>[[ ${title} ]]</h1>
 		<div th:each="item : ${user.orderItems}">
 			<hr class="cart_border">
 			<div class="cart_total">
