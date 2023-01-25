@@ -11,6 +11,10 @@
 	display:none;
 }
 
+.admin_item{
+	height: 100px;
+}
+
 .cart_item {
 	height: 100px;
 	
